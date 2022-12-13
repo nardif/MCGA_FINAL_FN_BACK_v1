@@ -1,5 +1,4 @@
-# PARCIAL 1 BACKEND MCGA 2022
-## Cimarelli Fabrizio - UAI
+# BACKEND MCGA 2022
 
 ### Desarrollo
 
