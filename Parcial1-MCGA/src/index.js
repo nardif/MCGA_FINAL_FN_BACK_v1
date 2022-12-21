@@ -3,7 +3,6 @@ const mongoose = require('mongoose') //Guarda una variable con el acceso la libr
 const router = require('./routes/index') // Rutas creadas
 const express = require('express') //Guarda una variable con el acceso la librería Express
 const cors = require('cors');
-const checkToken = require("./middleware/tokenauth");
 const checkAuth = require("./middleware/authorizeToken");
 
 const app = express(); //Instancia un objeto Express en app y levanta el proceso del servidor
