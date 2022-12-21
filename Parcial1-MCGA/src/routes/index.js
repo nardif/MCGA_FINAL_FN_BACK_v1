@@ -1,6 +1,5 @@
 const express = require('express'); // requiero archivos de la libreria express
 
-const checkAuth = require('../middleware/authorizeToken');
 const productos = require('./products'); // guardo en variable la ruta productos
 const auth = require('./auth');
 

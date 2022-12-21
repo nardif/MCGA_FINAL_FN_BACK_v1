@@ -34,7 +34,7 @@ const login = async (req, res) => {
                 expiresIn:'1d',
             },
         );
-        const decoded = await jwt.verify(token, process.env.JWT_KEY);
+
         user.token = token;
         await user.save();
         

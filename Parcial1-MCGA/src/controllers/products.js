@@ -3,7 +3,6 @@ const esquemaProducts = require('../models/products')
 //Metodos para mostrar, actualizar y borrar productos
 
 // obtiene todos los productos
-
 const getProducts = async (req, res) => {    
     try{
         const response = await esquemaProducts.find() 
@@ -21,7 +20,6 @@ const getProducts = async (req, res) => {
 }
 
 // obtiene productos por id
-
 const getProductsById = async (req, res) => {
      try{
          const response = await esquemaProducts.findOne({ id: req.params.id })
@@ -46,8 +44,7 @@ const getProductsById = async (req, res) => {
      }
  }
 
- // obtiene productos por noombre
-
+ // obtiene productos por nombre
  const getProductsByName = async (req, res) => {
     try{
         const response = await esquemaProducts.findOne({ name: req.params.name })
@@ -73,7 +70,6 @@ const getProductsById = async (req, res) => {
 }
 
 // agrega un nuevo producto
-
  const addProduct =  async (req, res) => {
     try{
          const Product = new esquemaProducts(req.body)
@@ -92,10 +88,8 @@ const getProductsById = async (req, res) => {
  }
 
 // borrar por id (si hay id repetido borra el primero que encuentra)
-
  const deleteProductById = async (req, res) => {
     try{
-        // console.log(req.params.id);
         const response = await esquemaProducts.deleteOne({ _id: req.params.id })
         if(!response || response.length === 0){
             return res.status(404).json({
