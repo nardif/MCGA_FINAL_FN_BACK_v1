@@ -6,11 +6,10 @@ const jwt = require('jsonwebtoken');
 const login = async (req, res) => {
    const email = req.body?.email;
    const password = req.body?.password;
-   console.log({ email, password })
     if (!email || !password) {
         return res.status(422).json({
             error: true,
-            message: 'Ingrese correo electrónico y contraseña'
+            msg: 'Ingrese correo electrónico y contraseña'
         })
     }
     try {
@@ -47,12 +46,34 @@ const login = async (req, res) => {
                 token: user.token,
             },
         })
-        }
-        catch (error) {
-            return res.status(400).json({
-                error: true,
-                msg: error,
-            });
-        }    
+    }
+      catch (error) {
+        return res.status(error.status || 400).json({
+            error: true,
+            msg: error,
+        });
+    }    
 }
-module.exports = {login}
+const getUserData = async (req, res) => {
+    const userId = req.user._id;
+   try {
+    const user = await esquemaUsers.findById(userId).select({ name: true, email: true, token: true });
+    if (!user) {
+        const err = new Error('User not found!');
+        err.status = 404;
+        throw err;
+    }
+
+    return res.json({
+        msg: 'Authorized',
+        data: user
+    })
+   } catch(err) {
+    return res.status(err.status || 401).json({
+        error: true,
+        msg: err.toString()
+    })
+   }
+}
+
+module.exports = {login, getUserData}
